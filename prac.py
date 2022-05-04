@@ -1,26 +1,12 @@
 class Solution:
-    def isValid(self,s):
-        stack = []
-        if(len(s) == 1):
-            return False
-        stack.append(s[0])
-        for i in range(1, len(s)):
-            if(len(stack) == 0):
-                stack.append(s[i])
-            elif(stack[-1] == '(' and s[i] == ')'):
-                stack.pop()
-            elif(stack[-1] == '[' and s[i] == ']'):
-                stack.pop()
-            elif(stack[-1] == '{' and s[i] == '}'):
-                stack.pop()
-            else:
-                stack.append(s[i])
+    def peakIndexInMountainArray(self, arr):
+        print(' arr => ', arr)
+        prev = arr[0]
+        for i in range(len(arr)):
+            if(prev > arr[i]):
+                return i-1
+            prev = arr[i]
         
-        if(len(stack) == 0):
-            return True
-        else:
-            return False
-
 
 res = Solution()
-print(res.isValid("()[]{}"))
+print(res.peakIndexInMountainArray([0,1,0]))
