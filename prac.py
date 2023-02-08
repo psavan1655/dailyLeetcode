@@ -1,27 +1,20 @@
-# function isSubsequence(s: string, t: string): boolean {
-#   let sPtr = 0;
-
-#   for (let i of t) {
-#     if (s[sPtr] === i) sPtr += 1;
-#   }
-
-#   return s.length === sPtr;
-# }
-
-# console.log(isSubsequence('axc', 'ahbgdc'));
-
-
-class Solution(object):
-    def isSubsequence(self, s, t):
-        sPtr = 0
-        for i in range(len(t)):
-            if sPtr == len(s):
-                return True
-            if s[sPtr] == t[i]:
-                sPtr += 1
-
-        return len(s) == sPtr
+class Solution:
+    def asteroidCollision(self, asteroids):
+        stack = []
+        for asteroid in asteroids:
+            while len(stack) and asteroid < 0 and stack[-1] > 0:
+                if stack[-1] == -asteroid: 
+                    stack.pop()
+                    break
+                elif stack[-1] < -asteroid:
+                    stack.pop()
+                    continue
+                elif stack[-1] > -asteroid:
+                    break
+            else:
+                stack.append(asteroid)
+        return stack
 
 
 res = Solution()
-print(res.isSubsequence("", "ahbgdc"))
+print(res.asteroidCollision([-2,-2,1,-2]))
